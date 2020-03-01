@@ -5,12 +5,21 @@ namespace Cwiczenia1
 {
     class Program
     {
-        static void Main(string[] args)
+        static async System.Threading.Tasks.Task Main(string[] args)
         {
             //jakis komentarz
             var client = new HttpClient();
-            var result = client.GetAsync("https://www.pja.edu.pl");
-            Console.WriteLine("Hello World!");
+            HttpResponseMessage result = await client.GetAsync("https://www.pja.edu.pl");
+
+
+            if (result.IsSuccessStatusCode)
+            {
+                string html = await result.Content.ReadAsStringAsync();
+
+            }
+            
+                
+            Console.WriteLine("kONIEC!");
         }
     }
 }
